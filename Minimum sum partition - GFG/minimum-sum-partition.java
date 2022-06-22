@@ -39,19 +39,24 @@ class Solution
 	    }
 	    int mid = sum/2;
 	    int ist = 0;
+	    boolean ans [] = isSubsetSum(n , arr , sum);
+	   // for(int i = 0 ; i < ans.length ; i++){
+	   //     System.out.println("ans "+ ans[i]);
+	   // }
 	    for(int i = mid ; i>= 0 ; i--){
-	        boolean ans = isSubsetSum(n , arr , i);
-	        if(ans==true){
-	           ist = i;
-	           break;
-	        }
+	           if(ans[i]==true){
+	               ist = i;
+	               break;
+	           }
 	    }
 	    int sec = sum-ist;
-	   // System.out.println("lets find"+find);
+	   
 	    return Math.abs(ist-sec);
+	   
+	 
 	}
 	
-	static Boolean isSubsetSum(int N, int arr[], int sum){
+	static boolean [] isSubsetSum(int N, int arr[], int sum){
         boolean dp[][] = new boolean [N+1][sum+1];
         for(int i = 0 ; i <= N ; i++){
             for(int j = 0 ; j <=sum ; j++){
@@ -77,6 +82,7 @@ class Solution
             }
             
         }
-        return dp[N][sum];
+      
+        return dp[N];
     }
 }
