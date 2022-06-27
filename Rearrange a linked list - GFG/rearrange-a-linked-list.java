@@ -64,45 +64,30 @@ class Solution
    // Should rearrange given linked list such that all even
    // positioned Nodes are before odd positioned.
    // Returns nothing
-   void rearrangeEvenOdd(Node head)
-   {
-         //  The task is to complete this method
-         
-         ArrayList<Integer> odd = new ArrayList<Integer>();
-         ArrayList<Integer> even = new ArrayList<Integer>();
-         
-         Node temp = head;
-         
-         int i=1;
-         while(temp!=null){
-             
-             if(i%2==0){
-                 
-                 even.add(temp.data);
-             }else{
-                 
-                 odd.add(temp.data);
-             }
-             
-             i++;
-             temp = temp.next;
-             
-         }
-         
-         
-         for(int j=0; j<odd.size(); j++){
-             
-             head.data = odd.get(j);
-             head = head.next;
-         }
-         
-           for(int j=0; j<even.size(); j++){
-             
-             head.data = even.get(j);
-             head = head.next;
-         }
-         
-         
-         
-    }
+    void rearrangeEvenOdd(Node head)
+    {
+          //  The task is to complete this method
+      
+        Node odd = new Node(-1);
+        Node op = odd;
+        Node even = new Node(-1);
+        Node ep = even;
+        
+        Node cur = head;
+        int idx = 1;
+        while(cur != null){
+            if(idx %2 ==0){
+                ep.next = cur;
+                ep = ep.next;
+            }else{
+                op.next = cur;
+                op = op.next;
+            }
+            cur = cur.next;
+            idx++;
+        }
+        op.next = even.next;
+        ep.next = null;
+        head = odd.next;
+     }
 }
