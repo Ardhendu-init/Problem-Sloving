@@ -41,13 +41,14 @@ class Solution{
         if(dp[i][j] != -1){
             return dp[i][j];
         }
-       int min = Integer.MAX_VALUE;
-       
-       for(int k = i ; k <= j-1; k++){
-           int temp = helper(s, i , k, dp)+helper(s , k+1 , j, dp )+1;
-           min = Math.min(min , temp);
-       }
-       return dp[i][j]=min;
+        int ans = Integer.MAX_VALUE;
+        for(int k=i;k<=j-1;k++){
+            if(isPalindrome(s, i, k)){
+                int partitions = 1+helper(s, k+1, j, dp);
+                ans = Math.min(ans, partitions);   
+            }
+        }
+        return dp[i][j] = ans;
     }
     static boolean isPalindrome(String s , int i , int j){
         while(i < j ){
